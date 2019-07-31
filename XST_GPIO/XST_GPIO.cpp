@@ -38,7 +38,7 @@ uint8_t XST_GPIO::digitalRead(uint8_t pin) {
     pin yang lain.
   */
 
-  //Manually reset register to avoid latched to previous input
+  //Reset data register
   pinMode(pin, OUTPUT);
   GPIOx->DATA &= ~1 << pin;
   GPIOx->DATAOUT &= ~1 << pin;
