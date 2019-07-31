@@ -1,3 +1,2 @@
 # XirkaLib
-# Hallo
-Library Untuk Xirka
+Library untuk Chip Xirka
