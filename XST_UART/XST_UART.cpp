@@ -42,15 +42,22 @@ unsigned char XST_UART::getcNow(void) {
 };
 
 void XST_UART::print(char* string) {
-	for (uint16_t i = 0; i< strlen(string); i++){
-		sendc(string[i]);
-	}
+  for (uint16_t i = 0; i < strlen(string); i++) {
+    sendc(string[i]);
+  }
 };
 
-void XST_UART::print(int num) { //print integer as a string
-  char result[50];
-  sprintf(result, "%d", num);
-  print(result);
+
+void XST_UART::print(int32_t num, uint8_t type) { //print a byte in 3 forms
+  char result[32];
+  if (type == HEX) {
+    sprintf(result, "%X", num);
+    print(result);
+  }
+  else if (type == DEC) {
+    sprintf(result, "%d", num);
+    print(result);
+  }
 };
 
 void XST_UART::println(char* string) {
@@ -58,20 +65,10 @@ void XST_UART::println(char* string) {
   sendc('\n');
 };
 
-void XST_UART::println(int num) { //print integer as a string
-  print(num);
-  sendc('\n');
-};
 
-void XST_UART::print(uint8_t c, uint8_t type) { //print a byte in 3 forms
-  if (type == HEX) {
-		char result[16];
-		sprintf(result, "%X", c);
-		print(result);
-	}
-  else if (type == DEC){
-		print((int) c);
-  }
+void XST_UART::println(int32_t c, uint8_t type) { //print a byte in 3 forms
+  print(c, type);
+  sendc('\n');
 };
 
 void XST_UART::EndSimulation(void) {
@@ -93,13 +90,11 @@ void XST_UART::setTimeout(uint16_t time) {
 
 
 
-char* XST_UART::read(){
-	char buf[READ_BUFF_SIZE];
-	while (1){
-		
-		
-		
-	}
+char* XST_UART::read() {
+  char buf[READ_BUFF_SIZE];
+  while (1) {
+
+  }
 }
 
 //char* XST_UART::readString(){

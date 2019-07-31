@@ -79,6 +79,7 @@ void XST_SPI::transfer(uint8_t data)
 
 uint8_t XST_SPI::receive(void)
 {
+  CMSDK_GPIO0->DATAOUT &= ~1 << 0; //chip select enable
   uint8_t response;
   while (!(SPIx->SPSR & SPI_SPSR_RFEMPTY_Msk))
   {
