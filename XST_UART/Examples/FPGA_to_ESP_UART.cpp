@@ -14,6 +14,3 @@ int main(void)
 	//Kirim data ke ESP melalui UART0
 	UART_ESP.print(data);
 }
-
-
-	

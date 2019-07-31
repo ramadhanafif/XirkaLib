@@ -74,7 +74,17 @@ void XST_SPI::transfer(uint8_t data)
   delaymicros(1); //for stability
   while (!(SPIx->SPSR & WFEMPTY)); //do nothing if write fifo is full
   end_transfer();
+  //CMSDK_GPIO0->DATAOUT |= (1<<CS); //chip select disable
+}
 
+uint8_t XST_SPI::receive(void)
+{
+  uint8_t response;
+  while (!(SPIx->SPSR & SPI_SPSR_RFEMPTY_Msk))
+  {
+    response = SPIx->SPDR;
+  }
+  return response;
 }
 
 void XST_SPI::end_transfer(void)
