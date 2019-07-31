@@ -15,7 +15,7 @@ void XST_GPIO::pinMode(uint8_t pin, uint8_t io) {
     GPIOx->OUTENABLESET |= 1 << pin;
     GPIOx->OUTENABLECLR &= ~1 << pin;
   }
-  else if (io == INPUT) //un-set as output, but still capable of output
+  else if (io == INPUT) //disable output
   {
     GPIOx->OUTENABLESET &= ~1 << pin;
     GPIOx->OUTENABLECLR |= 1 << pin;
@@ -39,7 +39,7 @@ uint8_t XST_GPIO::digitalRead(uint8_t pin) {
   */
 
   //Reset data register
-  pinMode(pin, OUTPUT);
+  pinMode(pin, OUTPUT); //enable output to allow change in data register 
   GPIOx->DATA &= ~1 << pin;
   GPIOx->DATAOUT &= ~1 << pin;
 
