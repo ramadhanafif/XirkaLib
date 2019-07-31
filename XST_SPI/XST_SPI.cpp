@@ -22,7 +22,16 @@ void XST_SPI::begin(void)
 	CMSDK_GPIO1->OUTENABLESET &= ~1<<MISO;
 	
 	settings(); //set default settings
-	SPIx->SPCR |= SPE; //core enable
+	
+	core_enable(); //core enable
+}
+
+void XST_SPI::core_enable(bool is_enable)
+{
+	if (is_enable)
+		SPIx->SPCR |= SPE; //core enable
+	else
+		SPIx->SPCR &= ~SPE; //core enable
 }
 
 //JANGAN LUPA ENABLE CORE SETELAH UBAH SETTING

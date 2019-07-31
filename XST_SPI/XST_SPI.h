@@ -41,6 +41,7 @@ class XST_SPI {
 	XST_SPI(SPI_TypeDef * SPI_nomer = SPI0);
 	void reset(void);
 	void begin(void); //initialize the SPI library
+	void core_enable(bool is_enable = true);
 	bool settings(bool IS_MASTER = true, uint8_t MODE = 3, uint8_t CLK_DIV_MODE = 3);
 	void transfer(uint8_t data);
 	void end_transfer(void);
