@@ -33,12 +33,9 @@ class XST_UART {
     unsigned char getcNow(void); //read data from RX register without checking data availability
 
     void print(char* string); //send string of char
-    void print(int num); //send a number as a string, not as an ascii
-    void print(int32_t c, uint8_t type = DEC); //print a byte in 2 forms, HEX, DEC
-
+    void print(int32_t c, uint8_t type = DEC); //print as hexadecimal or decimal. Put HEX, DEC in type
 
     void println(char* string); //append a NL (new line) in end
-    void println(int num); //print number as a string, append NL in end.
     void println(int32_t c, uint8_t type = DEC); //print a byte in 3 forms
 
     void EndSimulation(void); //send a EOT (end of transmission) and stop.
@@ -56,3 +53,4 @@ class XST_UART {
 
 
 #endif
+
