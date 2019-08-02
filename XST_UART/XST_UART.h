@@ -29,7 +29,7 @@ class XST_UART {
 
     unsigned char sendc (char c); //send 1 byte of data
     void sendc (uint8_t c); //sendc with uint8_t input
-    unsigned char getc(void); //receive 1 byte of data
+    unsigned char getC(void); //receive 1 byte of data
     unsigned char getcNow(void); //read data from RX register without checking data availability
 
     void print(char* string); //send string of char

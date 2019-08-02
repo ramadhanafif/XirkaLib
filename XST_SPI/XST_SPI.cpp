@@ -92,8 +92,12 @@ void XST_SPI::end_transfer(void)
 {
   __ISB();//small delay
   CMSDK_GPIO0->DATAOUT |= (1 << CS); //chip select disable
-  SPIx->SPCR &= ~(1 << SPE); //disable core, reset fifo
+  SPIx->SPCR &= ~SPE; //disable core, reset fifo
 }
+
+
+
+
 
 /* void SPI_write_byte(SPI_TypeDef *SPIx, uint8_t RegisterAddress, uint8_t Data)
   {

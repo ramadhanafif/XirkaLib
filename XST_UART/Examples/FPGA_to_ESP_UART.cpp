@@ -1,16 +1,26 @@
 #include "XST_UART.h"
+#include "lcd_xirka.h"
+#include <string.h>
 
-#define BAUDRATE 9600
-#define MAX_BYTES 100
-XST_UART UART_ESP(UART0);
-
+XST_UART Serial(UART0);
 int main(void)
 {
-	UART_ESP.begin(BAUDRATE);
+	Serial.begin(9600);
+	init();
+	char buf[3];
+	Serial.print("{\"card_id\":\"1101016\",\"nim\":\"1121213\",\"name\":\"TestESP\",\"instansi\":\"Xirka\"}");
 	
-	char data[MAX_BYTES];
-	strcpy(data, "{\"card_id\": 1234576,\"nim\": 1321010,\"name\": \"Test1\",\"instansi\": \"Xirka1\"}");
+	//Baca 3 digit response dari server
+	for (int i=0;i<3;i++){
+		buf[i]=Serial.getC();
+	}
 	
-	//Kirim data ke ESP melalui UART0
-	UART_ESP.print(data);
+	//201-> Card Added, 200-> OK
+	if(strcmp(buf,"201")|strcmp(buf,"200")){
+		LCD_WriteString("Card Added!");
+	}
+	//400-> Error
+	else{
+		LCD_WriteString("Adding card failed!");
+	}
 }

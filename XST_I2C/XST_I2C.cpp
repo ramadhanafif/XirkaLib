@@ -47,6 +47,10 @@ void XST_I2C::reset(void)
 
 void XST_I2C::beginTransfer(uint8_t adr, uint8_t mode)
 {
+	/*
+	I2C PACKAGE BLOCK: <7 bit address><1 bit R/W mode>
+	*/
+
     adr <<= 1;
     if (mode == 1) //write mode, write bit = 0;
         I2Cx->TXR = adr;

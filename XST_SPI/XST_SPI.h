@@ -46,6 +46,10 @@ class XST_SPI {
     bool settings(bool IS_MASTER = true, uint8_t MODE = 3, uint8_t CLK_DIV_MODE = 3);
     void transfer(uint8_t data);
     void end_transfer(void);
+    void set_cs (CMSDK_GPIO_TypeDef* cs_gpio,uint8_t cspin);
+	private:
+    SPI_TypeDef *SPIx;
+
 };
 
 #endif

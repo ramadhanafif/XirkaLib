@@ -301,7 +301,7 @@ uint8_t Adafruit_Fingerprint::getStructuredPacket(Adafruit_Fingerprint_Packet * 
 				return FINGERPRINT_TIMEOUT;
       }
     }		
-		byte = UART.getc();
+		byte = UART.getC();
 #ifdef FINGERPRINT_DEBUG
     mySerial.print("<- 0x"); mySerial.print(byte, HEX);mySerial.sendc('\n');
 #endif

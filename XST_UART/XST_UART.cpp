@@ -32,7 +32,7 @@ void XST_UART::sendc (uint8_t c)
   sendc((char) c);
 };
 
-unsigned char XST_UART::getc(void) {
+unsigned char XST_UART::getC(void) {
   while ((UARTx->STATE & 2) == 0); // Wait if Receive Holding register is empty
   return (UARTx->DATA);
 };

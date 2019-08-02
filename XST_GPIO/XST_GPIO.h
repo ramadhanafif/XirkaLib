@@ -16,11 +16,16 @@
 
 class XST_GPIO{
 	public:
-		XST_GPIO(CMSDK_GPIO_TypeDef* GPIO_number);//Contstructor
-		void pinOutClear (uint8_t pin);	//clear previously set OUTPUT pin 
-		void pinMode(uint8_t pin, uint8_t io);	//set a pin as OUTPUT or INPUT
-		void digitalWrite(uint8_t pin, uint8_t state);	//set digital HIGH or LOW on pin
-		uint8_t digitalRead(uint8_t pin);	//read pin
+		//Contstructor
+		XST_GPIO(CMSDK_GPIO_TypeDef* GPIO_number);
+		
+		//set a pin as OUTPUT or INPUT
+		void pinMode(uint8_t pin, uint8_t io);	
+		
+		//set digital HIGH or LOW on pin
+		void digitalWrite(uint8_t pin, uint8_t state);	
+		
+		uint8_t digitalRead(uint8_t pin);
 	private:
 		CMSDK_GPIO_TypeDef* GPIOx;
 };
