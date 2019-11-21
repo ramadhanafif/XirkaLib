@@ -1,8 +1,7 @@
 #include "FP_lib.h"
 #include "CMSDK_CM3.h"
 #include <stdio.h>
-//#include "uart_stdout.h"
-#include "lcd_xirka.h"
+#include "utility.h"
 #include <stdlib.h>
 
 #define delay delaymilis
