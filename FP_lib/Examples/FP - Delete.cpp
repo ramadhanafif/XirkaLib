@@ -16,7 +16,6 @@ void loop(void);
 
 int main(){
 	setup();
-	Serial.println(100);
 	while(1){
 		loop();
 		break;
