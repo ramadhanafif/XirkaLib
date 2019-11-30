@@ -9,7 +9,7 @@
 #define MISO 8
 #define MOSI 9
 #define SCK 10
-#define CS 0 //GPIO0
+#define CS 11 //GPIO0
 #define GPIO_CS CMSDK_GPIO1
 
 //SPCR bits
@@ -43,11 +43,14 @@ class XST_SPI {
     void begin(void); //initialize the SPI library
     void core_enable(bool is_enable = true);
     uint8_t receive(void);
-    bool settings(bool IS_MASTER = true, uint8_t MODE = 3, uint8_t CLK_DIV_MODE = 3);
-    void transfer(uint8_t data);
+    bool settings(bool IS_MASTER = true, uint8_t MODE = 0, uint8_t CLK_DIV_MODE = 3);
+    uint8_t transfer(uint8_t data);
     void end_transfer(void);
-    void set_cs (CMSDK_GPIO_TypeDef* cs_gpio,uint8_t cspin);
-	private:
+    void set_cs (CMSDK_GPIO_TypeDef* cs_gpio, uint8_t cspin);
+    void cs_active(void);
+    void cs_inactive(void);
+    void SPI_interrupt_Enable(SPI_TypeDef *SPI, uint8_t ien_irq);
+  private:
     SPI_TypeDef *SPIx;
 
 };
