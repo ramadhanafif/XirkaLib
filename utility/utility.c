@@ -1,5 +1,6 @@
 #include "utility.h"
 
+<<<<<<< Updated upstream
 volatile unsigned long _millis;
 volatile uint8_t __millis_active__ = 0;
 
@@ -12,6 +13,27 @@ void millis_start(void) {
 
 void SysTick_Handler(void) {
   _millis++;
+=======
+volatile unsigned long _millis = 0;
+volatile unsigned long _micros = 0;
+volatile unsigned long micros_old = 0;
+
+volatile uint8_t __timer_active__ = 0;
+
+void timer_start(void) {
+  SysTick_Config(SystemFrequency / 100000); //1MHz
+  __timer_active__ = 1;
+  _millis = 0;
+}
+
+void SysTick_Handler(void) {
+  _micros+=10;
+	if (_micros - micros_old >=1000)
+	{
+		micros_old = _micros;
+		_millis++;
+	}
+>>>>>>> Stashed changes
 }
 
 unsigned long millis(void) {
