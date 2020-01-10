@@ -7,8 +7,6 @@
 #define PRESCALE_1_16  1
 #define PRESCALE_1_256 2
 
-#define PWM_16_MAX 65535
-
 /**************************************************************************/
 /*!
     @brief   Enable or disable PWM functionality on pin
@@ -16,7 +14,7 @@
     @param   pwm 1 to enable pwm, 0 to disable pwm
 */
 /**************************************************************************/
-void pinMode(uint32_t pin, uint32_t pwm) {
+void PWM(uint32_t pin, uint32_t pwm) {
   CMSDK_DUALTIMER_SINGLE_TypeDef* CMSDK_DUALTIMERx;
   if (pin == 4)
     CMSDK_DUALTIMERx = CMSDK_DUALTIMER1;
@@ -79,7 +77,7 @@ void pwmChangeLoad(uint32_t pin, uint32_t load) {
 
 /**************************************************************************/
 /*!
-    @brief   Function to convert ducy cycle percentage to on_cycle 
+    @brief   Function to convert ducy cycle percentage to on_cycle value
     @param   pin pin number (4 or 5)
     @param   percent duty cycle percentage, 0 to 100
     @return  32-bit integer to be passed to on_cycle
