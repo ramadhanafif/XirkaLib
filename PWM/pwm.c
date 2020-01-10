@@ -38,7 +38,7 @@ void pinMode(uint32_t pin, uint32_t pwm) {
   CMSDK_GPIO0->OUTENABLESET = 1 << pin;
   CMSDK_GPIO0->ALTFUNCSET = 1 << pin;
 
-  CMSDK_DUALTIMERx->TimerLoad = PWM_16_MAX; //default load value
+  CMSDK_DUALTIMERx->TimerLoad = TIMER_LOAD_DEFAULT; //default load value
 }
 
 /**************************************************************************/
@@ -121,18 +121,4 @@ void pwmChangeDiv(uint32_t pin, uint32_t prescaler) {
     CMSDK_DUALTIMERx = CMSDK_DUALTIMER2;
 
   CMSDK_DUALTIMERx->TimerControl |= (prescaler & 0x3) << CMSDK_DUALTIMER_CTRL_PRESCALE_Pos;
-}
-
-#define PWM 1
-
-int main() {
-  unsigned char pin = 4;
-
-  CMSDK_GPIO0->OUTENABLESET = 1 << 4;
-
-  pinMode(pin, PWM);
-  pwmChangeLoad(pin, 5);
-  pwmChangeDiv(pin, PRESCALE_1_1);
-  pwmWrite(pin,2);
-  
 }
